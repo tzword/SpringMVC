@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.cenyol</groupId>
+    <groupId>com.tzword</groupId>
     <artifactId>mybatis-plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mybatis-plus</name>
+    <name>code-generator</name>
     <description>Demo project for MybatisPlus based Spring Boot</description>
 
     <properties>

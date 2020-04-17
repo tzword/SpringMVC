@@ -34,9 +34,6 @@
 ### 使用步骤
 
 1. 拉取代码
-```bash
-git clone https://github.com/Cenyol/SpringMVC.git
-```
 
 2. 设计数据表，并在application.properties 中配置好数据库连接信息
 
@@ -56,7 +53,7 @@ MybatisPlusConfig
 ### 使用建议
 1. 在运行 coder generator 之前，修改包名为你自己的，可以通过 idea 来一键修改，手动修改也行，没几个文件。
 ```bash
-com.cenyol.mybatisplus -> com.yours.domain
+com.tzword.mybatisplus -> com.yours.domain
 ```
 
 
