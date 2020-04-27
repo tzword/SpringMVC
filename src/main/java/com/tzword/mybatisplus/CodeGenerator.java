@@ -46,7 +46,7 @@ public class CodeGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor(author);
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setSwagger2(true); //实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -66,11 +66,27 @@ public class CodeGenerator {
             }
         };
 
-        // 如果模板引擎是 freemarker
-        String templatePath = "/templates/mapper.xml.ftl";
 
+
+        // 自定义controller的代码模板
+        String templatePath = "/templates/controller.java.ftl";
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 + pc.getModuleName()
+                String expand = projectPath + "/src/main/java/com/tzword/mybatisplus/" +pc.getModuleName() + "/" + "controller";
+                String entityFile = String.format((expand + File.separator + "%s" + ".java"), tableInfo.getControllerName());
+                return entityFile;
+            }
+        });
+
+        // 自定义mapper的代码模板
+        templatePath = "/templates/mapper.xml.ftl";
+        // 自定义输出配置
+        focList = new ArrayList<>();
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(templatePath) {
             @Override
@@ -87,7 +103,7 @@ public class CodeGenerator {
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
         templateConfig.setXml(null);
-        templateConfig.setController("templates/controller.java");
+//        templateConfig.setController(null);
         mpg.setTemplate(templateConfig);
 
         // 策略配置
